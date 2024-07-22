@@ -1,6 +1,8 @@
-use std::time::Duration;
+mod helper;
+mod timer;
 
 use clap::{Parser, Subcommand};
+use timer::start;
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -11,7 +13,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    Start
+    Start,
 }
 
 fn main() {
@@ -21,11 +23,7 @@ fn main() {
         Commands::Start => {
             println!("pomodoro start!");
             start();
-            println!("pomodoro finish!")
-        },
+            println!("pomodoro finish!");
+        }
     }
-}
-
-fn start() {
-    std::thread::sleep(Duration::from_secs(3));
 }
